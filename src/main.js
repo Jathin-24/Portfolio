@@ -3,7 +3,7 @@
    ============================================= */
 
 import './style.css';
-import { initSpace } from './space.js';
+import { initSpace, flyToZone } from './space.js';
 import { initAnimations } from './animations.js';
 
 // ---- Initialize Everything ----
@@ -12,10 +12,82 @@ document.addEventListener('DOMContentLoaded', () => {
     initAnimations();
     initTypewriter();
     initProjectFilter();
+    initHUD();
     initMobileNav();
     initCursorGlow();
-    initSmoothScroll();
+    initCosmicDust();
+    initZoneObserver();
 });
+
+// ---- HUD Navigation & Status ----
+function initHUD() {
+    const hudLinks = document.querySelectorAll('.hud-link');
+    const statusValue = document.querySelector('.hud-item.status .value');
+    
+    hudLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const zone = link.getAttribute('data-section');
+            const coords = link.getAttribute('data-coords');
+            
+            // Trigger 3D Fly-to
+            flyToZone(zone);
+            
+            // Update HUD Status
+            if (statusValue) {
+                statusValue.textContent = `WARPING_TO_${zone.toUpperCase()}`;
+                setTimeout(() => {
+                    statusValue.textContent = `ZONE_${zone.toUpperCase()}_LOCKED`;
+                }, 2000);
+            }
+
+            // Scroll to section manually to keep DOM in sync
+            const targetEl = document.getElementById(zone);
+            if (targetEl) {
+                targetEl.scrollIntoView({ behavior: 'smooth' });
+            }
+
+            // Update Active Link
+            hudLinks.forEach(l => l.classList.remove('active'));
+            link.classList.add('active');
+        });
+    });
+}
+
+// ---- Zone Intersection Observer ----
+function initZoneObserver() {
+    const zones = document.querySelectorAll('.zone');
+    const options = {
+        threshold: 0.3
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const zone = entry.target.id;
+                // Only fly if user is scrolling naturally
+                if (!window.isWarpingByClick) {
+                    flyToZone(zone);
+                    updateHUDActiveLink(zone);
+                }
+             entry.target.classList.add('in-view');
+            }
+        });
+    }, options);
+
+    zones.forEach(zone => observer.observe(zone));
+}
+
+function updateHUDActiveLink(zoneId) {
+    const links = document.querySelectorAll('.hud-link');
+    links.forEach(link => {
+        if (link.getAttribute('href') === `#${zoneId}`) {
+            link.classList.add('active');
+        } else {
+            link.classList.remove('active');
+        }
+    });
+}
 
 // ---- Typewriter Effect ----
 function initTypewriter() {
@@ -23,11 +95,11 @@ function initTypewriter() {
     if (!typewriterEl) return;
 
     const phrases = [
-        'Web Developer & ML Enthusiast',
-        'B.Tech Computer Science Student',
-        'Building the Future, One Line at a Time',
-        'React.js • Python • Three.js',
-        'Turning Ideas into Reality 🚀',
+        'Agentic AI & SLM Developer',
+        'Commander of the Savage-01 🚀',
+        'Winner @ India AI Buildathon HCL GUVI',
+        'VS Code Extension & NPM Creator',
+        'B.Tech CS @ KKR & KSR Institute',
     ];
 
     let phraseIndex = 0;
@@ -50,17 +122,55 @@ function initTypewriter() {
 
         if (!isDeleting && charIndex === currentPhrase.length) {
             isDeleting = true;
-            typingSpeed = 2000; // pause at end
+            typingSpeed = 2000;
         } else if (isDeleting && charIndex === 0) {
             isDeleting = false;
             phraseIndex = (phraseIndex + 1) % phrases.length;
-            typingSpeed = 400; // pause before new phrase
+            typingSpeed = 400;
         }
 
         setTimeout(type, typingSpeed);
     }
 
     setTimeout(type, 1200);
+}
+
+// ---- Cosmic Dust Effect ----
+function initCosmicDust() {
+    window.addEventListener('click', (e) => {
+        for (let i = 0; i < 8; i++) {
+            createDust(e.clientX, e.clientY);
+        }
+    });
+
+    function createDust(x, y) {
+        const dust = document.createElement('div');
+        dust.className = 'cosmic-dust';
+        
+        const size = Math.random() * 4 + 2;
+        dust.style.width = size + 'px';
+        dust.style.height = size + 'px';
+        
+        dust.style.left = x + 'px';
+        dust.style.top = y + 'px';
+        
+        document.body.appendChild(dust);
+        
+        const angle = Math.random() * Math.PI * 2;
+        const velocity = Math.random() * 100 + 50;
+        const tx = Math.cos(angle) * velocity;
+        const ty = Math.sin(angle) * velocity;
+        
+        const animation = dust.animate([
+            { transform: 'translate(0, 0) scale(1)', opacity: 0.8 },
+            { transform: `translate(${tx}px, ${ty}px) scale(0)`, opacity: 0 }
+        ], {
+            duration: Math.random() * 1000 + 500,
+            easing: 'cubic-bezier(0, .9, .57, 1)'
+        });
+        
+        animation.onfinish = () => dust.remove();
+    }
 }
 
 // ---- Project Filtering ----
@@ -70,7 +180,6 @@ function initProjectFilter() {
 
     filterBtns.forEach(btn => {
         btn.addEventListener('click', () => {
-            // Update active button
             filterBtns.forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
 
@@ -82,7 +191,6 @@ function initProjectFilter() {
 
                 if (shouldShow) {
                     card.style.display = 'block';
-                    // Re-animate with stagger
                     setTimeout(() => {
                         card.style.opacity = '1';
                         card.style.transform = 'translateY(0)';
@@ -102,20 +210,19 @@ function initProjectFilter() {
 // ---- Mobile Navigation ----
 function initMobileNav() {
     const toggle = document.getElementById('nav-toggle');
-    const navLinks = document.getElementById('nav-links');
+    const hudLinks = document.getElementById('nav-links');
 
-    if (!toggle || !navLinks) return;
+    if (!toggle || !hudLinks) return;
 
     toggle.addEventListener('click', () => {
         toggle.classList.toggle('open');
-        navLinks.classList.toggle('open');
+        hudLinks.classList.toggle('open');
     });
 
-    // Close on link click
-    navLinks.querySelectorAll('.nav-link').forEach(link => {
+    hudLinks.querySelectorAll('.hud-link').forEach(link => {
         link.addEventListener('click', () => {
             toggle.classList.remove('open');
-            navLinks.classList.remove('open');
+            hudLinks.classList.remove('open');
         });
     });
 }
@@ -124,8 +231,6 @@ function initMobileNav() {
 function initCursorGlow() {
     const cursorGlow = document.getElementById('cursor-glow');
     if (!cursorGlow) return;
-
-    // Hide on mobile
     if (window.innerWidth < 768) {
         cursorGlow.style.display = 'none';
         return;
@@ -148,20 +253,4 @@ function initCursorGlow() {
     }
 
     updateCursor();
-}
-
-// ---- Smooth Scroll for Anchor Links ----
-function initSmoothScroll() {
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', (e) => {
-            e.preventDefault();
-            const target = document.querySelector(anchor.getAttribute('href'));
-            if (target) {
-                target.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start',
-                });
-            }
-        });
-    });
 }

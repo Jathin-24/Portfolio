@@ -25,24 +25,41 @@
     <!-- Custom Cursor -->
     <div class="cursor-glow" id="cursor-glow"></div>
 
-    <!-- Navigation -->
-    <nav class="navbar" id="navbar">
-        <div class="nav-logo">
-            <span class="logo-bracket">&lt;</span>
-            <span class="logo-name">JL</span>
-            <span class="logo-bracket">/&gt;</span>
+    <!-- ===== SPACESHIP HUD (NAVIGATION) ===== -->
+    <nav class="hud" id="hud">
+        <div class="hud-scanner">
+            <div class="scanner-line"></div>
         </div>
-        <ul class="nav-links" id="nav-links">
-            <li><a href="#hero" class="nav-link active" data-section="hero">Launch</a></li>
-            <li><a href="#about" class="nav-link" data-section="about">Mission</a></li>
-            <li><a href="#skills" class="nav-link" data-section="skills">Star Map</a></li>
-            <li><a href="#projects" class="nav-link" data-section="projects">Stations</a></li>
-            <li><a href="#timeline" class="nav-link" data-section="timeline">Warp Log</a></li>
-            <li><a href="#contact" class="nav-link" data-section="contact">Control</a></li>
+        
+        <div class="hud-left">
+            <div class="hud-item logo">
+                <span class="glitch-text" data-text="SAVAGE-01">SAVAGE-01</span>
+            </div>
+            <div class="hud-item status">
+                <span class="label">SYSTEM:</span>
+                <span class="value cyan pulse">ONLINE</span>
+            </div>
+        </div>
+
+        <ul class="hud-links" id="nav-links">
+            <li><a href="#hero" class="hud-link active" data-section="hero" data-coords="0,0,0">LAUNCH</a></li>
+            <li><a href="#about" class="hud-link" data-section="about" data-coords="0,10,20">NEBULA</a></li>
+            <li><a href="#skills" class="hud-link" data-section="skills" data-coords="30,-5,-10">CLUSTER</a></li>
+            <li><a href="#projects" class="hud-link" data-section="projects" data-coords="-40,15,30">STATIONS</a></li>
+            <li><a href="#feed" class="hud-link" data-section="feed" data-coords="10,-20,50">SIGNALS</a></li>
+            <li><a href="#timeline" class="hud-link" data-section="timeline" data-coords="0,0,-100">CHRONO</a></li>
+            <li><a href="#contact" class="hud-link" data-section="contact" data-coords="5,5,10">DOCK</a></li>
         </ul>
-        <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
-            <span></span><span></span><span></span>
-        </button>
+
+        <div class="hud-right">
+            <div class="hud-item power">
+                <span class="label">PWR:</span>
+                <div class="power-bar"><div class="bar-fill"></div></div>
+            </div>
+            <button class="nav-toggle" id="nav-toggle">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
     </nav>
 
     <!-- Progress Bar -->
@@ -80,11 +97,11 @@
             </div>
             <div class="hero-stats">
                 <div class="stat-item">
-                    <span class="stat-number" data-target="9">0</span><span class="stat-plus">+</span>
-                    <span class="stat-label">Projects</span>
+                    <span class="stat-number" data-target="15">0</span><span class="stat-plus">+</span>
+                    <span class="stat-label">Missions</span>
                 </div>
                 <div class="stat-item">
-                    <span class="stat-number" data-target="6">0</span><span class="stat-plus">+</span>
+                    <span class="stat-number" data-target="12">0</span><span class="stat-plus">+</span>
                     <span class="stat-label">Technologies</span>
                 </div>
                 <div class="stat-item">
@@ -101,13 +118,24 @@
         </div>
     </section>
 
-    <!-- ===== ABOUT SECTION ===== -->
-    <section class="section about-section" id="about">
+    <!-- ===== THE RENDER NEBULA (ABOUT) ===== -->
+    <section class="section zone about-section" id="about" data-zone="render-nebula">
         <div class="section-header">
-            <span class="section-number">01</span>
-            <h2 class="section-title">Mission <span class="gradient-text">Briefing</span></h2>
+            <span class="section-number">ZONE_01</span>
+            <h2 class="section-title">The <span class="gradient-text">Render Nebula</span></h2>
             <div class="section-line"></div>
         </div>
+        
+        <div class="story-detour">
+            <div class="story-alert pulse">
+                <i class="fas fa-exclamation-triangle"></i>
+                <span>ERROR: BACKEND_SILENT | RENDER_SLEEP_DETECTED</span>
+            </div>
+            <p class="story-text">
+                "We launched Team Savage with an Agentic Honey-Pot for India AI Buildathon. Everything was perfect locally. But in the deep void of deployment, Render's free tier variables took us offline. We didn't win that day, but we extracted the most valuable data: <strong>Resilience through redundancy.</strong>"
+            </p>
+        </div>
+
         <div class="about-grid">
             <div class="about-image-container">
                 <div class="image-frame">
@@ -115,66 +143,33 @@
                     <div class="image-border"></div>
                     <div class="image-glow"></div>
                 </div>
-                <div class="about-socials">
-                    <a href="https://github.com/Jathin-24" target="_blank" rel="noopener" class="social-link" aria-label="GitHub">
-                        <i class="fab fa-github"></i>
-                    </a>
-                    <a href="https://www.linkedin.com/in/jathin-lalith-dachepalli-16178b314/" target="_blank" rel="noopener" class="social-link" aria-label="LinkedIn">
-                        <i class="fab fa-linkedin-in"></i>
-                    </a>
-                    <a href="mailto:jlr.jathinlalith@gmail.com" class="social-link" aria-label="Email">
-                        <i class="fas fa-envelope"></i>
-                    </a>
-                </div>
             </div>
             <div class="about-content">
                 <div class="about-text">
                     <p class="about-lead">
-                        Hey there! I'm <strong>Jathin Lalith Dachepalli</strong>, a B.Tech Computer Science student at 
-                        <strong>KKR & KSR Institute of Technology and Sciences</strong>, expected to graduate in 2027.
+                        I am <strong>Jathin Lalith</strong>, Commander of the Savage-01. When systems fail, I reboot with better logic.
                     </p>
                     <p>
-                        My journey through the cosmos of code began early — in 9th grade, I built a <strong>Home Security System</strong> 
-                        that qualified for the <em>State-Level Science Expo</em> organized by the Government of Andhra Pradesh. 
-                        That spark ignited a lifelong passion for building things that matter.
+                        Current coordinates: B.Tech Computer Science @ <strong>KKR & KSR Institute</strong>. 
+                        My mission is to bridge the gap between AI theory and robust, production-ready agents. 
                     </p>
                     <p>
-                        Today, I navigate between two galaxies — <strong>Web Development</strong> (React.js, JavaScript, Supabase) and 
-                        <strong>Machine Learning</strong> (scikit-learn, CNN, pandas). Whether it's crafting intuitive web platforms 
-                        or training models to predict customer churn, I'm driven by the thrill of solving real-world problems.
-                    </p>
-                    <p>
-                        When I'm not coding, you'll find me <strong>singing</strong>, playing musical instruments, reading books, 
-                        or watching anime — because every great astronaut needs their downtime. 🚀
+                        From qualifying for the <strong>State Science Expo</strong> to winning national hackathons, every mission is a step towards mastering the <strong>Agentic AI</strong> frontier.
                     </p>
                 </div>
                 <div class="about-details">
-                    <div class="detail-item">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <span>Tenali, Andhra Pradesh, India</span>
-                    </div>
-                    <div class="detail-item">
-                        <i class="fas fa-graduation-cap"></i>
-                        <span>B.Tech CSE — Class of 2027</span>
-                    </div>
-                    <div class="detail-item">
-                        <i class="fas fa-code"></i>
-                        <span>Full-Stack Web Dev & ML Enthusiast</span>
-                    </div>
-                    <div class="detail-item">
-                        <i class="fas fa-trophy"></i>
-                        <span>State Science Expo Qualifier • Hackathon Winner</span>
-                    </div>
+                    <div class="detail-item"><i class="fas fa-microchip"></i><span>Agentic AI & SLM Specialist</span></div>
+                    <div class="detail-item"><i class="fas fa-award"></i><span>Buildathon Winner & Hackathon Champion</span></div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ===== SKILLS SECTION ===== -->
-    <section class="section skills-section" id="skills">
+    <!-- ===== THE TECH CLUSTER (SKILLS) ===== -->
+    <section class="section zone skills-section" id="skills" data-zone="tech-cluster">
         <div class="section-header">
-            <span class="section-number">02</span>
-            <h2 class="section-title">Star <span class="gradient-text">Map</span></h2>
+            <span class="section-number">ZONE_02</span>
+            <h2 class="section-title">The <span class="gradient-text">Tech Cluster</span></h2>
             <div class="section-line"></div>
         </div>
         <p class="section-description">Technologies and tools I've mastered on my journey through the code galaxy.</p>
@@ -189,78 +184,146 @@
                     <div class="skill-node" data-skill="C"><div class="skill-icon"><i class="fas fa-code"></i></div><span>C</span></div>
                 </div>
             </div>
+            <!-- AI & ML -->
+            <div class="skill-category">
+                <h3 class="category-title"><i class="fas fa-brain"></i> AI & Machine Learning</h3>
+                <div class="skill-items">
+                    <div class="skill-node" data-skill="Agentic AI"><div class="skill-icon"><i class="fas fa-robot"></i></div><span>Agentic AI</span></div>
+                    <div class="skill-node" data-skill="LLM/SLM"><div class="skill-icon"><i class="fas fa-microchip"></i></div><span>LLM / SLM</span></div>
+                    <div class="skill-node" data-skill="FastAPI/RAG"><div class="skill-icon"><i class="fas fa-bolt"></i></div><span>FastAPI RAG</span></div>
+                    <div class="skill-node" data-skill="CNN/DL"><div class="skill-icon"><i class="fas fa-network-wired"></i></div><span>CNN / DL</span></div>
+                </div>
+            </div>
             <!-- Web Development -->
             <div class="skill-category">
-                <h3 class="category-title"><i class="fas fa-globe"></i> Web Development</h3>
+                <h3 class="category-title"><i class="fas fa-globe"></i> Web Dev & Tools</h3>
                 <div class="skill-items">
-                    <div class="skill-node" data-skill="HTML5"><div class="skill-icon"><i class="fab fa-html5"></i></div><span>HTML5</span></div>
-                    <div class="skill-node" data-skill="CSS3"><div class="skill-icon"><i class="fab fa-css3-alt"></i></div><span>CSS3</span></div>
                     <div class="skill-node" data-skill="React"><div class="skill-icon"><i class="fab fa-react"></i></div><span>React.js</span></div>
+                    <div class="skill-node" data-skill="VS Code API"><div class="skill-icon"><i class="fas fa-code"></i></div><span>VS Code API</span></div>
+                    <div class="skill-node" data-skill="Node/NPM"><div class="skill-icon"><i class="fab fa-node-js"></i></div><span>Node.js / NPM</span></div>
                     <div class="skill-node" data-skill="Supabase"><div class="skill-icon"><i class="fas fa-database"></i></div><span>Supabase</span></div>
                 </div>
             </div>
-            <!-- Machine Learning -->
+            <!-- Platforms -->
             <div class="skill-category">
-                <h3 class="category-title"><i class="fas fa-brain"></i> Machine Learning</h3>
+                <h3 class="category-title"><i class="fas fa-rocket"></i> Platforms</h3>
                 <div class="skill-items">
-                    <div class="skill-node" data-skill="scikit-learn"><div class="skill-icon"><i class="fas fa-cogs"></i></div><span>scikit-learn</span></div>
-                    <div class="skill-node" data-skill="pandas"><div class="skill-icon"><i class="fas fa-table"></i></div><span>pandas</span></div>
-                    <div class="skill-node" data-skill="numpy"><div class="skill-icon"><i class="fas fa-calculator"></i></div><span>NumPy</span></div>
-                    <div class="skill-node" data-skill="CNN"><div class="skill-icon"><i class="fas fa-network-wired"></i></div><span>CNN / DL</span></div>
-                </div>
-            </div>
-            <!-- Tools -->
-            <div class="skill-category">
-                <h3 class="category-title"><i class="fas fa-tools"></i> Tools & Platforms</h3>
-                <div class="skill-items">
-                    <div class="skill-node" data-skill="Git"><div class="skill-icon"><i class="fab fa-git-alt"></i></div><span>Git</span></div>
-                    <div class="skill-node" data-skill="GitHub"><div class="skill-icon"><i class="fab fa-github"></i></div><span>GitHub</span></div>
-                    <div class="skill-node" data-skill="Netlify"><div class="skill-icon"><i class="fas fa-cloud"></i></div><span>Netlify</span></div>
-                    <div class="skill-node" data-skill="Jupyter"><div class="skill-icon"><i class="fas fa-book-open"></i></div><span>Jupyter</span></div>
+                    <div class="skill-node" data-skill="Git House"><div class="skill-icon"><i class="fab fa-github"></i></div><span>GitHub</span></div>
+                    <div class="skill-node" data-skill="Docker"><div class="skill-icon"><i class="fab fa-docker"></i></div><span>Docker</span></div>
+                    <div class="skill-node" data-skill="ChromaDB"><div class="skill-icon"><i class="fas fa-search"></i></div><span>ChromaDB</span></div>
+                    <div class="skill-node" data-skill="ROS"><div class="skill-icon"><i class="fas fa-cogs"></i></div><span>ROS</span></div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ===== PROJECTS SECTION ===== -->
-    <section class="section projects-section" id="projects">
+    <!-- ===== PROJECT STATIONS (PROJECTS) ===== -->
+    <section class="section zone projects-section" id="projects" data-zone="project-stations">
         <div class="section-header">
-            <span class="section-number">03</span>
-            <h2 class="section-title">Space <span class="gradient-text">Stations</span></h2>
+            <span class="section-number">ZONE_03</span>
+            <h2 class="section-title">Project <span class="gradient-text">Stations</span></h2>
             <div class="section-line"></div>
         </div>
-        <p class="section-description">Each project is a station I've built during my voyage. Click to explore.</p>
+        <p class="section-description">High-priority targets intercepted and neutralized during previous missions.</p>
 
         <div class="projects-filter" id="projects-filter">
             <button class="filter-btn active" data-filter="all">All Missions</button>
-            <button class="filter-btn" data-filter="web">Web Dev</button>
-            <button class="filter-btn" data-filter="ml">Machine Learning</button>
+            <button class="filter-btn" data-filter="ai">Agentic AI & ML</button>
+            <button class="filter-btn" data-filter="web">Web & Extensions</button>
             <button class="filter-btn" data-filter="other">Other</button>
         </div>
 
         <div class="projects-grid" id="projects-grid">
-            <!-- Project 1 -->
-            <div class="project-card" data-category="other">
+            <!-- New Project: TUT Dashboard -->
+            <div class="project-card" data-category="web">
                 <div class="card-glow"></div>
                 <div class="card-content">
                     <div class="card-header">
-                        <div class="card-icon"><i class="fas fa-shield-alt"></i></div>
+                        <div class="card-icon"><i class="fas fa-terminal"></i></div>
                         <div class="card-links">
-                            <span class="card-tag special">🏆 State Expo</span>
+                            <a href="https://lnkd.in/g5_cHCda" target="_blank" rel="noopener"><i class="fas fa-shopping-cart"></i></a>
+                            <span class="card-tag special">🚀 Marketplace</span>
                         </div>
                     </div>
-                    <h3 class="card-title">Home Security System</h3>
-                    <p class="card-subtitle">Electronic Eye</p>
-                    <p class="card-description">A light-sensitive alarm system designed to detect unauthorized entry by triggering a sound when an object interrupts the light beam. Built in 9th grade — qualified for the State-Level Science Expo.</p>
+                    <h3 class="card-title">TUT Dashboard</h3>
+                    <p class="card-subtitle">VS Code Extension</p>
+                    <p class="card-description">A VS Code extension to solve "Tab Clutter". Scans projects for linked resources and puts them in a clean sidebar view with thumbnails.</p>
                     <div class="card-tags">
-                        <span class="tag">Electronics</span>
-                        <span class="tag">Physics</span>
-                        <span class="tag">Hardware</span>
+                        <span class="tag">TypeScript</span>
+                        <span class="tag">VS Code API</span>
+                        <span class="tag">YouTube API</span>
                     </div>
                 </div>
             </div>
 
-            <!-- Project 2 -->
+            <!-- New Project: Agentic Honey-Pot -->
+            <div class="project-card" data-category="ai">
+                <div class="card-glow"></div>
+                <div class="card-content">
+                    <div class="card-header">
+                        <div class="card-icon"><i class="fas fa-user-secret"></i></div>
+                        <div class="card-links">
+                            <a href="https://lnkd.in/gZzEHXzy" target="_blank" rel="noopener"><i class="fab fa-github"></i></a>
+                            <span class="card-tag special">🛡️ Scam Detection</span>
+                        </div>
+                    </div>
+                    <h3 class="card-title">Agentic Honey-Pot</h3>
+                    <p class="card-subtitle">AI Security Framework</p>
+                    <p class="card-description">Built for India AI Impact Buildathon. An agentic system for scam detection that autonomously analyzes threats using SLMs.</p>
+                    <div class="card-tags">
+                        <span class="tag">Python</span>
+                        <span class="tag">FastAPI</span>
+                        <span class="tag">LangChain</span>
+                        <span class="tag">SLM</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- New Project: RAG API -->
+            <div class="project-card" data-category="ai">
+                <div class="card-glow"></div>
+                <div class="card-content">
+                    <div class="card-header">
+                        <div class="card-icon"><i class="fas fa-database"></i></div>
+                        <div class="card-links">
+                            <a href="https://lnkd.in/gnFcvFvh" target="_blank" rel="noopener"><i class="fas fa-external-link-alt"></i></a>
+                        </div>
+                    </div>
+                    <h3 class="card-title">RAG API</h3>
+                    <p class="card-subtitle">AI Document Intelligence</p>
+                    <p class="card-description">Local RAG system using Chroma for vector search and Ollama for LLM, featuring a FastAPI backend with Swagger UI docs.</p>
+                    <div class="card-tags">
+                        <span class="tag">FastAPI</span>
+                        <span class="tag">ChromaDB</span>
+                        <span class="tag">Ollama</span>
+                        <span class="tag">RAG</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- New Project: TUT-Manager -->
+            <div class="project-card" data-category="web">
+                <div class="card-glow"></div>
+                <div class="card-content">
+                    <div class="card-header">
+                        <div class="card-icon"><i class="fab fa-npm"></i></div>
+                        <div class="card-links">
+                            <a href="https://lnkd.in/gr_AVgGE" target="_blank" rel="noopener"><i class="fas fa-link"></i></a>
+                            <span class="card-tag special">📦 NPM</span>
+                        </div>
+                    </div>
+                    <h3 class="card-title">TUT-Manager</h3>
+                    <p class="card-subtitle">CLI Productivity Tool</p>
+                    <p class="card-description">An NPM package that lets developers "pin" URLs to local directories, eliminating context-switching between terminal and browser.</p>
+                    <div class="card-tags">
+                        <span class="tag">Node.js</span>
+                        <span class="tag">JavaScript</span>
+                        <span class="tag">CLI</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Existing Projects (Keep prominent ones) -->
             <div class="project-card" data-category="web">
                 <div class="card-glow"></div>
                 <div class="card-content">
@@ -268,65 +331,17 @@
                         <div class="card-icon"><i class="fas fa-cloud-upload-alt"></i></div>
                         <div class="card-links">
                             <a href="https://github.com/Jathin-24/EduVault" target="_blank" rel="noopener"><i class="fab fa-github"></i></a>
-                            <a href="https://incomparable-moonbeam-bf8044.netlify.app" target="_blank" rel="noopener"><i class="fas fa-external-link-alt"></i></a>
                             <span class="card-tag special">🏆 1st Prize</span>
                         </div>
                     </div>
                     <h3 class="card-title">EduVault</h3>
                     <p class="card-subtitle">Academic File Management</p>
-                    <p class="card-description">A user-friendly web app that lets students create accounts, upload and download academic files from anywhere. Won 1st Prize at a college-level Hackathon.</p>
-                    <div class="card-tags">
-                        <span class="tag">JavaScript</span>
-                        <span class="tag">Bolt.ai</span>
-                        <span class="tag">Netlify</span>
-                    </div>
+                    <p class="card-description">Secure academic file sharing vault. Winner of college-level hackathon 2025.</p>
+                    <div class="card-tags"><span class="tag">React</span><span class="tag">Supabase</span><span class="tag">Netlify</span></div>
                 </div>
             </div>
 
-            <!-- Project 3 -->
-            <div class="project-card" data-category="ml">
-                <div class="card-glow"></div>
-                <div class="card-content">
-                    <div class="card-header">
-                        <div class="card-icon"><i class="fas fa-chart-bar"></i></div>
-                        <div class="card-links">
-                            <a href="https://github.com/Jathin-24/Project_1" target="_blank" rel="noopener"><i class="fab fa-github"></i></a>
-                        </div>
-                    </div>
-                    <h3 class="card-title">Insurance Purchase Prediction</h3>
-                    <p class="card-subtitle">ML Classification Model</p>
-                    <p class="card-description">A machine learning model that predicts whether a customer will purchase insurance based on features like age and salary. Built and evaluated in Jupyter Notebook.</p>
-                    <div class="card-tags">
-                        <span class="tag">Python</span>
-                        <span class="tag">pandas</span>
-                        <span class="tag">NumPy</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Project 4 -->
-            <div class="project-card" data-category="web">
-                <div class="card-glow"></div>
-                <div class="card-content">
-                    <div class="card-header">
-                        <div class="card-icon"><i class="fas fa-lightbulb"></i></div>
-                        <div class="card-links">
-                            <a href="https://github.com/Jathin-24/Team_Thunders_Soc" target="_blank" rel="noopener"><i class="fab fa-github"></i></a>
-                        </div>
-                    </div>
-                    <h3 class="card-title">Idea to Start-up Platform</h3>
-                    <p class="card-subtitle">Investor-Innovator Connector</p>
-                    <p class="card-description">A web platform connecting investors with innovative minds. Features project submission, browsing funding opportunities, and a responsive UI for all devices.</p>
-                    <div class="card-tags">
-                        <span class="tag">HTML</span>
-                        <span class="tag">CSS</span>
-                        <span class="tag">JavaScript</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Project 5 -->
-            <div class="project-card" data-category="ml">
+            <div class="project-card" data-category="ai">
                 <div class="card-glow"></div>
                 <div class="card-content">
                     <div class="card-header">
@@ -336,170 +351,147 @@
                         </div>
                     </div>
                     <h3 class="card-title">Cancer Net</h3>
-                    <p class="card-subtitle">Breast Cancer CNN Classifier</p>
-                    <p class="card-description">A deep learning CNN classifier (CancerNet) that detects malignant and benign breast cancer histology images using the IDC dataset, assisting pathologists in early diagnosis.</p>
-                    <div class="card-tags">
-                        <span class="tag">Python</span>
-                        <span class="tag">CNN</span>
-                        <span class="tag">Deep Learning</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Project 6 -->
-            <div class="project-card" data-category="ml">
-                <div class="card-glow"></div>
-                <div class="card-content">
-                    <div class="card-header">
-                        <div class="card-icon"><i class="fas fa-smile"></i></div>
-                        <div class="card-links">
-                            <a href="https://github.com/Jathin-24/IOT_Hackathon_Mood_Enhancer" target="_blank" rel="noopener"><i class="fab fa-github"></i></a>
-                        </div>
-                    </div>
-                    <h3 class="card-title">Mood Enhancer</h3>
-                    <p class="card-subtitle">IoT + AI Emotion System</p>
-                    <p class="card-description">An IoT project that detects user mood and modifies the environment to improve it, using Hugging Face pre-trained models and OpenCV for emotion recognition.</p>
-                    <div class="card-tags">
-                        <span class="tag">Python</span>
-                        <span class="tag">HuggingFace</span>
-                        <span class="tag">OpenCV</span>
-                        <span class="tag">Supabase</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Project 7 -->
-            <div class="project-card" data-category="ml">
-                <div class="card-glow"></div>
-                <div class="card-content">
-                    <div class="card-header">
-                        <div class="card-icon"><i class="fas fa-users-cog"></i></div>
-                        <div class="card-links">
-                            <a href="https://github.com/Jathin-24/Employee_Attrition_Prediction" target="_blank" rel="noopener"><i class="fab fa-github"></i></a>
-                        </div>
-                    </div>
-                    <h3 class="card-title">Employee Attrition Prediction</h3>
-                    <p class="card-subtitle">HR Analytics ML Pipeline</p>
-                    <p class="card-description">An end-to-end ML pipeline predicting employee attrition using HR, demographic, and job data — helping organizations identify at-risk employees and take preventive action.</p>
-                    <div class="card-tags">
-                        <span class="tag">Python</span>
-                        <span class="tag">scikit-learn</span>
-                        <span class="tag">ML Pipeline</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Project 8 -->
-            <div class="project-card" data-category="ml">
-                <div class="card-glow"></div>
-                <div class="card-content">
-                    <div class="card-header">
-                        <div class="card-icon"><i class="fas fa-user-slash"></i></div>
-                        <div class="card-links">
-                            <a href="https://github.com/Jathin-24/customer-churn-prediction-system" target="_blank" rel="noopener"><i class="fab fa-github"></i></a>
-                        </div>
-                    </div>
-                    <h3 class="card-title">Customer Churn Prediction</h3>
-                    <p class="card-subtitle">Business Intelligence ML</p>
-                    <p class="card-description">End-to-end ML pipeline predicting customer churn using behavioral and transactional data, helping businesses retain customers likely to discontinue service.</p>
-                    <div class="card-tags">
-                        <span class="tag">Python</span>
-                        <span class="tag">ML</span>
-                        <span class="tag">Data Science</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Project 9 -->
-            <div class="project-card" data-category="ml">
-                <div class="card-glow"></div>
-                <div class="card-content">
-                    <div class="card-header">
-                        <div class="card-icon"><i class="fas fa-car-crash"></i></div>
-                        <div class="card-links">
-                            <a href="https://colab.research.google.com/drive/11S91VSZqDjzFXPdtK7tSdEwb46ygqNJT?usp=sharing" target="_blank" rel="noopener"><i class="fas fa-external-link-alt"></i></a>
-                        </div>
-                    </div>
-                    <h3 class="card-title">Accident Severity Prediction</h3>
-                    <p class="card-subtitle">Random Forest Classifier</p>
-                    <p class="card-description">A Random Forest ML model that predicts accident severity based on gathered data, used to forecast the likelihood and intensity of accidents for safer outcomes.</p>
-                    <div class="card-tags">
-                        <span class="tag">Python</span>
-                        <span class="tag">Random Forest</span>
-                        <span class="tag">Colab</span>
-                    </div>
+                    <p class="card-subtitle">Deep Learning Classifier</p>
+                    <p class="card-description">CNN classifier that detects malignant histology images using the IDC dataset with 90%+ accuracy.</p>
+                    <div class="card-tags"><span class="tag">Python</span><span class="tag">CNN</span><span class="tag">PyTorch</span></div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ===== TIMELINE SECTION ===== -->
-    <section class="section timeline-section" id="timeline">
+    <!-- ===== GALAXY SIGNAL (FEED) ===== -->
+    <section class="section zone feed-section" id="feed" data-zone="galaxy-signal">
         <div class="section-header">
-            <span class="section-number">04</span>
-            <h2 class="section-title">Warp <span class="gradient-text">Log</span></h2>
+            <span class="section-number">ZONE_04</span>
+            <h2 class="section-title">Galaxy <span class="gradient-text">Signal</span></h2>
             <div class="section-line"></div>
         </div>
-        <p class="section-description">My journey through space-time — education, achievements, and milestones.</p>
+        <p class="section-description">Intercepting long-range professional transmissions from the LinkedIn deep.</p>
+
+        <div class="feed-container">
+            <div class="feed-track" id="feed-track">
+                <!-- Card 1 -->
+                <div class="feed-card">
+                    <div class="feed-header">
+                        <div class="user-info">
+                            <div class="user-avatar">JL</div>
+                            <div>
+                                <h4>Jathin Lalith</h4>
+                                <span>1 week ago</span>
+                            </div>
+                        </div>
+                        <i class="fab fa-linkedin"></i>
+                    </div>
+                    <p class="feed-text">"One oversight. One assumption. That's all it took." We built an Agentic Honey-Pot for India AI Buildathon. Server slept on Render free tier. Lesson: Error responses must always return JSON. 🔥</p>
+                    <div class="feed-footer"><span class="tag">#AI</span><span class="tag">#FastAPI</span></div>
+                </div>
+                <!-- Card 2 -->
+                <div class="feed-card">
+                    <div class="feed-header">
+                        <div class="user-info">
+                            <div class="user-avatar">JL</div>
+                            <div>
+                                <h4>Jathin Lalith</h4>
+                                <span>1 month ago</span>
+                            </div>
+                        </div>
+                        <i class="fab fa-linkedin"></i>
+                    </div>
+                    <p class="feed-text">Finally built my first <strong>VS Code Extension</strong>! 🚀 TUT Dashboard solves "Tab Clutter" by bringing resources inside the editor. Seeing my icon in the Activity Bar feels great.</p>
+                    <div class="feed-footer"><span class="tag">#WebDev</span><span class="tag">#Productivity</span></div>
+                </div>
+                <!-- Card 3 -->
+                <div class="feed-card">
+                    <div class="feed-header">
+                        <div class="user-info">
+                            <div class="user-avatar">JL</div>
+                            <div>
+                                <h4>Jathin Lalith</h4>
+                                <span>2 months ago</span>
+                            </div>
+                        </div>
+                        <i class="fab fa-linkedin"></i>
+                    </div>
+                    <p class="feed-text">🚀 **Mindsprint 2K25 Hackathon**: Participated with "Codebase Summarisation" — an AI system that generates accurate documentation for complex repositories in minutes.</p>
+                    <div class="feed-footer"><span class="tag">#Hackathon</span><span class="tag">#AI</span></div>
+                </div>
+                <!-- Card 4 -->
+                <div class="feed-card">
+                    <div class="feed-header">
+                        <div class="user-info">
+                            <div class="user-avatar">JL</div>
+                            <div>
+                                <h4>Jathin Lalith</h4>
+                                <span>4 months ago</span>
+                            </div>
+                        </div>
+                        <i class="fab fa-linkedin"></i>
+                    </div>
+                    <p class="feed-text">Amazing time at **Google DevFest Hyderabad**! Explored Agentic AI workshops and connected with GenAI pioneers. Huge thanks to GDG Hyderabad for empowering the community. 💻</p>
+                    <div class="feed-footer"><span class="tag">#GenAI</span><span class="tag">#Google</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== CHRONOVAULT (TIMELINE) ===== -->
+    <section class="section zone timeline-section" id="timeline" data-zone="chronovault">
+        <div class="section-header">
+            <span class="section-number">ZONE_05</span>
+            <h2 class="section-title">The <span class="gradient-text">Chronovault</span></h2>
+            <div class="section-line"></div>
+        </div>
+        <p class="section-description">Deciphering time-logs of academic and professional advancement.</p>
 
         <div class="timeline" id="timeline-container">
             <div class="timeline-line"></div>
             
             <div class="timeline-item left">
-                <div class="timeline-dot"><i class="fas fa-star"></i></div>
+                <div class="timeline-dot"><i class="fas fa-trophy"></i></div>
                 <div class="timeline-card">
-                    <span class="timeline-date">2025</span>
-                    <h3>🏆 Hackathon Winner</h3>
-                    <p>Won <strong>1st Prize</strong> at a college-level Hackathon for the EduVault project, developed using Bolt.ai as part of Team.</p>
+                    <span class="timeline-date">FEB 2026</span>
+                    <h3>🚀 Buildathon Winner</h3>
+                    <p>Won <strong>1st Prize</strong> in Honeypot Track at <strong>India AI Impact Buildathon</strong> by HCL GUVI.</p>
                 </div>
             </div>
 
             <div class="timeline-item right">
-                <div class="timeline-dot"><i class="fas fa-rocket"></i></div>
+                <div class="timeline-dot"><i class="fas fa-robot"></i></div>
                 <div class="timeline-card">
-                    <span class="timeline-date">2023 — Present</span>
-                    <h3>🎓 B.Tech in Computer Science</h3>
-                    <p><strong>KKR & KSR Institute of Technology and Sciences</strong>, Vinjanampadu, AP. Expected Graduation: July 2027. Courses: DSA, Digital Logic, Discrete Math.</p>
+                    <span class="timeline-date">DEC 2025</span>
+                    <h3>🧠 Mindsprint 2K25</h3>
+                    <p>Participated in National Hackathon with <strong>Codebase Summarisation</strong> project. Won hearts and technical acclaim.</p>
                 </div>
             </div>
 
             <div class="timeline-item left">
+                <div class="timeline-dot"><i class="fas fa-satellite-dish"></i></div>
+                <div class="timeline-card">
+                    <span class="timeline-date">DEC 2025</span>
+                    <h3>🛠️ ROSCon India 2025</h3>
+                    <p>Explored Robotics & ROS in Pune. Insights into real-world autonomous applications as a CSE student.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item right">
                 <div class="timeline-dot"><i class="fas fa-graduation-cap"></i></div>
                 <div class="timeline-card">
-                    <span class="timeline-date">2023</span>
-                    <h3>📚 Intermediate (12th Grade)</h3>
-                    <p><strong>Sri Sarada JR College</strong>, Vijayawada. Scored an impressive <strong>91.3%</strong>.</p>
-                </div>
-            </div>
-
-            <div class="timeline-item right">
-                <div class="timeline-dot"><i class="fas fa-award"></i></div>
-                <div class="timeline-card">
-                    <span class="timeline-date">2021</span>
-                    <h3>🏅 10th Grade — Perfect Score</h3>
-                    <p><strong>Tiny Tots EM High School</strong>, Sullurupeta. Achieved a <strong>10.0 CGPA</strong>.</p>
-                </div>
-            </div>
-
-            <div class="timeline-item left">
-                <div class="timeline-dot"><i class="fas fa-medal"></i></div>
-                <div class="timeline-card">
-                    <span class="timeline-date">~2018</span>
-                    <h3>🔬 State-Level Science Expo</h3>
-                    <p>Built the <strong>Home Security System (Electronic Eye)</strong> in 9th grade with guidance from physics lecturer Elisha Sir. Qualified for state-level expo organized by the Government of Andhra Pradesh.</p>
+                    <span class="timeline-date">2023 — Present</span>
+                    <h3>🎓 B.Tech in CSE</h3>
+                    <p><strong>KKR & KSR Institute</strong>. Expected 2027. Maintaining excellence in DSA and AI research.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ===== CONTACT SECTION ===== -->
-    <section class="section contact-section" id="contact">
+    <!-- ===== CONTROL HUB (CONTACT) ===== -->
+    <section class="section zone contact-section" id="contact" data-zone="control-hub">
         <div class="section-header">
-            <span class="section-number">05</span>
-            <h2 class="section-title">Mission <span class="gradient-text">Control</span></h2>
+            <span class="section-number">ZONE_06</span>
+            <h2 class="section-title">Control <span class="gradient-text">Hub</span></h2>
             <div class="section-line"></div>
         </div>
-        <p class="section-description">Ready to connect? Let's make something amazing together.</p>
+        <p class="section-description">Final dock for secure communication and mission coordination.</p>
 
         <div class="contact-grid">
             <div class="contact-info-cards">

@@ -136,6 +136,34 @@ export function initAnimations() {
         });
     });
 
+    // ---- Galaxy Feed Section ----
+    gsap.utils.toArray('.feed-card').forEach((card, i) => {
+        gsap.to(card, {
+            scrollTrigger: {
+                trigger: card,
+                start: 'top 88%',
+                toggleActions: 'play none none none',
+            },
+            opacity: 1,
+            y: 0,
+            duration: 0.6,
+            delay: i * 0.1,
+            ease: 'power3.out',
+        });
+    });
+
+    // Horizontal scroll for feed track
+    gsap.to('.feed-track', {
+        scrollTrigger: {
+            trigger: '.feed-section',
+            start: 'top bottom',
+            end: 'bottom top',
+            scrub: 1,
+        },
+        x: -200,
+        ease: 'none',
+    });
+
     // ---- Contact Section ----
     gsap.utils.toArray('.contact-card').forEach((card, i) => {
         gsap.to(card, {
@@ -191,7 +219,7 @@ export function initAnimations() {
     });
 
     // ---- Active Nav Link on Scroll ----
-    const sections = ['hero', 'about', 'skills', 'projects', 'timeline', 'contact'];
+    const sections = ['hero', 'about', 'skills', 'projects', 'feed', 'timeline', 'contact'];
     sections.forEach(sectionId => {
         ScrollTrigger.create({
             trigger: `#${sectionId}`,
