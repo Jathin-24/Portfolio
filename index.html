@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jathin Lalith Dachepalli — Space Portfolio</title>
+    <meta name="description" content="Portfolio of Jathin Lalith Dachepalli — B.Tech CS student, web developer, and machine learning enthusiast. Explore projects, skills, and achievements.">
+    <meta name="keywords" content="Jathin Lalith, portfolio, web developer, machine learning, Three.js, space">
+    <meta property="og:title" content="Jathin Lalith Dachepalli — Portfolio">
+    <meta property="og:description" content="A space odyssey through the world of code, machine learning, and web development.">
+    <meta property="og:type" content="website">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+    <!-- Three.js Canvas -->
+    <canvas id="space-canvas"></canvas>
+
+    <!-- Custom Cursor -->
+    <div class="cursor-glow" id="cursor-glow"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-logo">
+            <span class="logo-bracket">&lt;</span>
+            <span class="logo-name">JL</span>
+            <span class="logo-bracket">/&gt;</span>
+        </div>
+        <ul class="nav-links" id="nav-links">
+            <li><a href="#hero" class="nav-link active" data-section="hero">Launch</a></li>
+            <li><a href="#about" class="nav-link" data-section="about">Mission</a></li>
+            <li><a href="#skills" class="nav-link" data-section="skills">Star Map</a></li>
+            <li><a href="#projects" class="nav-link" data-section="projects">Stations</a></li>
+            <li><a href="#timeline" class="nav-link" data-section="timeline">Warp Log</a></li>
+            <li><a href="#contact" class="nav-link" data-section="contact">Control</a></li>
+        </ul>
+        <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
+            <span></span><span></span><span></span>
+        </button>
+    </nav>
+
+    <!-- Progress Bar -->
+    <div class="scroll-progress" id="scroll-progress"></div>
+
+    <!-- ===== HERO SECTION ===== -->
+    <section class="section hero-section" id="hero">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span class="badge-dot"></span>
+                <span>SYSTEM ONLINE • READY FOR LAUNCH</span>
+            </div>
+            <h1 class="hero-title">
+                <span class="title-line line-1">
+                    <span class="title-word" data-delay="0">Jathin</span>
+                    <span class="title-word" data-delay="1">Lalith</span>
+                </span>
+                <span class="title-line line-2">
+                    <span class="title-word gradient-text" data-delay="2">Dachepalli</span>
+                </span>
+            </h1>
+            <p class="hero-subtitle">
+                <span class="typewriter" id="typewriter"></span>
+                <span class="cursor-blink">|</span>
+            </p>
+            <div class="hero-cta">
+                <a href="#about" class="cta-button primary">
+                    <span>Begin Journey</span>
+                    <i class="fas fa-rocket"></i>
+                </a>
+                <a href="#projects" class="cta-button secondary">
+                    <span>View Projects</span>
+                    <i class="fas fa-satellite"></i>
+                </a>
+            </div>
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <span class="stat-number" data-target="9">0</span><span class="stat-plus">+</span>
+                    <span class="stat-label">Projects</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" data-target="6">0</span><span class="stat-plus">+</span>
+                    <span class="stat-label">Technologies</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" data-target="46">0</span><span class="stat-plus">+</span>
+                    <span class="stat-label">Repositories</span>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-indicator" id="scroll-indicator">
+            <span>Scroll to Explore</span>
+            <div class="scroll-arrow">
+                <i class="fas fa-chevron-down"></i>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== ABOUT SECTION ===== -->
+    <section class="section about-section" id="about">
+        <div class="section-header">
+            <span class="section-number">01</span>
+            <h2 class="section-title">Mission <span class="gradient-text">Briefing</span></h2>
+            <div class="section-line"></div>
+        </div>
+        <div class="about-grid">
+            <div class="about-image-container">
+                <div class="image-frame">
+                    <img src="image.jpg" alt="Jathin Lalith Dachepalli" class="about-image" id="about-image">
+                    <div class="image-border"></div>
+                    <div class="image-glow"></div>
+                </div>
+                <div class="about-socials">
+                    <a href="https://github.com/Jathin-24" target="_blank" rel="noopener" class="social-link" aria-label="GitHub">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/jathin-lalith-dachepalli-16178b314/" target="_blank" rel="noopener" class="social-link" aria-label="LinkedIn">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href="mailto:jlr.jathinlalith@gmail.com" class="social-link" aria-label="Email">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <p class="about-lead">
+                        Hey there! I'm <strong>Jathin Lalith Dachepalli</strong>, a B.Tech Computer Science student at 
+                        <strong>KKR & KSR Institute of Technology and Sciences</strong>, expected to graduate in 2027.
+                    </p>
+                    <p>
+                        My journey through the cosmos of code began early — in 9th grade, I built a <strong>Home Security System</strong> 
+                        that qualified for the <em>State-Level Science Expo</em> organized by the Government of Andhra Pradesh. 
+                        That spark ignited a lifelong passion for building things that matter.
+                    </p>
+                    <p>
+                        Today, I navigate between two galaxies — <strong>Web Development</strong> (React.js, JavaScript, Supabase) and 
+                        <strong>Machine Learning</strong> (scikit-learn, CNN, pandas). Whether it's crafting intuitive web platforms 
+                        or training models to predict customer churn, I'm driven by the thrill of solving real-world problems.
+                    </p>
+                    <p>
+                        When I'm not coding, you'll find me <strong>singing</strong>, playing musical instruments, reading books, 
+                        or watching anime — because every great astronaut needs their downtime. 🚀
+                    </p>
+                </div>
+                <div class="about-details">
+                    <div class="detail-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Tenali, Andhra Pradesh, India</span>
+                    </div>
+                    <div class="detail-item">
+                        <i class="fas fa-graduation-cap"></i>
+                        <span>B.Tech CSE — Class of 2027</span>
+                    </div>
+                    <div class="detail-item">
+                        <i class="fas fa-code"></i>
+                        <span>Full-Stack Web Dev & ML Enthusiast</span>
+                    </div>
+                    <div class="detail-item">
+                        <i class="fas fa-trophy"></i>
+                        <span>State Science Expo Qualifier • Hackathon Winner</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== SKILLS SECTION ===== -->
+    <section class="section skills-section" id="skills">
+        <div class="section-header">
+            <span class="section-number">02</span>
+            <h2 class="section-title">Star <span class="gradient-text">Map</span></h2>
+            <div class="section-line"></div>
+        </div>
+        <p class="section-description">Technologies and tools I've mastered on my journey through the code galaxy.</p>
+        <div class="skills-grid" id="skills-grid">
+            <!-- Programming Languages -->
+            <div class="skill-category">
+                <h3 class="category-title"><i class="fas fa-terminal"></i> Languages</h3>
+                <div class="skill-items">
+                    <div class="skill-node" data-skill="Python"><div class="skill-icon"><i class="fab fa-python"></i></div><span>Python</span></div>
+                    <div class="skill-node" data-skill="JavaScript"><div class="skill-icon"><i class="fab fa-js-square"></i></div><span>JavaScript</span></div>
+                    <div class="skill-node" data-skill="Java"><div class="skill-icon"><i class="fab fa-java"></i></div><span>Java</span></div>
+                    <div class="skill-node" data-skill="C"><div class="skill-icon"><i class="fas fa-code"></i></div><span>C</span></div>
+                </div>
+            </div>
+            <!-- Web Development -->
+            <div class="skill-category">
+                <h3 class="category-title"><i class="fas fa-globe"></i> Web Development</h3>
+                <div class="skill-items">
+                    <div class="skill-node" data-skill="HTML5"><div class="skill-icon"><i class="fab fa-html5"></i></div><span>HTML5</span></div>
+                    <div class="skill-node" data-skill="CSS3"><div class="skill-icon"><i class="fab fa-css3-alt"></i></div><span>CSS3</span></div>
+                    <div class="skill-node" data-skill="React"><div class="skill-icon"><i class="fab fa-react"></i></div><span>React.js</span></div>
+                    <div class="skill-node" data-skill="Supabase"><div class="skill-icon"><i class="fas fa-database"></i></div><span>Supabase</span></div>
+                </div>
+            </div>
+            <!-- Machine Learning -->
+            <div class="skill-category">
+                <h3 class="category-title"><i class="fas fa-brain"></i> Machine Learning</h3>
+                <div class="skill-items">
+                    <div class="skill-node" data-skill="scikit-learn"><div class="skill-icon"><i class="fas fa-cogs"></i></div><span>scikit-learn</span></div>
+                    <div class="skill-node" data-skill="pandas"><div class="skill-icon"><i class="fas fa-table"></i></div><span>pandas</span></div>
+                    <div class="skill-node" data-skill="numpy"><div class="skill-icon"><i class="fas fa-calculator"></i></div><span>NumPy</span></div>
+                    <div class="skill-node" data-skill="CNN"><div class="skill-icon"><i class="fas fa-network-wired"></i></div><span>CNN / DL</span></div>
+                </div>
+            </div>
+            <!-- Tools -->
+            <div class="skill-category">
+                <h3 class="category-title"><i class="fas fa-tools"></i> Tools & Platforms</h3>
+                <div class="skill-items">
+                    <div class="skill-node" data-skill="Git"><div class="skill-icon"><i class="fab fa-git-alt"></i></div><span>Git</span></div>
+                    <div class="skill-node" data-skill="GitHub"><div class="skill-icon"><i class="fab fa-github"></i></div><span>GitHub</span></div>
+                    <div class="skill-node" data-skill="Netlify"><div class="skill-icon"><i class="fas fa-cloud"></i></div><span>Netlify</span></div>
+                    <div class="skill-node" data-skill="Jupyter"><div class="skill-icon"><i class="fas fa-book-open"></i></div><span>Jupyter</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== PROJECTS SECTION ===== -->
+    <section class="section projects-section" id="projects">
+        <div class="section-header">
+            <span class="section-number">03</span>
+            <h2 class="section-title">Space <span class="gradient-text">Stations</span></h2>
+            <div class="section-line"></div>
+        </div>
+        <p class="section-description">Each project is a station I've built during my voyage. Click to explore.</p>
+
+        <div class="projects-filter" id="projects-filter">
+            <button class="filter-btn active" data-filter="all">All Missions</button>
+            <button class="filter-btn" data-filter="web">Web Dev</button>
+            <button class="filter-btn" data-filter="ml">Machine Learning</button>
+            <button class="filter-btn" data-filter="other">Other</button>
+        </div>
+
+        <div class="projects-grid" id="projects-grid">
+            <!-- Project 1 -->
+            <div class="project-card" data-category="other">
+                <div class="card-glow"></div>
+                <div class="card-content">
+                    <div class="card-header">
+                        <div class="card-icon"><i class="fas fa-shield-alt"></i></div>
+                        <div class="card-links">
+                            <span class="card-tag special">🏆 State Expo</span>
+                        </div>
+                    </div>
+                    <h3 class="card-title">Home Security System</h3>
+                    <p class="card-subtitle">Electronic Eye</p>
+                    <p class="card-description">A light-sensitive alarm system designed to detect unauthorized entry by triggering a sound when an object interrupts the light beam. Built in 9th grade — qualified for the State-Level Science Expo.</p>
+                    <div class="card-tags">
+                        <span class="tag">Electronics</span>
+                        <span class="tag">Physics</span>
+                        <span class="tag">Hardware</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 2 -->
+            <div class="project-card" data-category="web">
+                <div class="card-glow"></div>
+                <div class="card-content">
+                    <div class="card-header">
+                        <div class="card-icon"><i class="fas fa-cloud-upload-alt"></i></div>
+                        <div class="card-links">
+                            <a href="https://github.com/Jathin-24/EduVault" target="_blank" rel="noopener"><i class="fab fa-github"></i></a>
+                            <a href="https://incomparable-moonbeam-bf8044.netlify.app" target="_blank" rel="noopener"><i class="fas fa-external-link-alt"></i></a>
+                            <span class="card-tag special">🏆 1st Prize</span>
+                        </div>
+                    </div>
+                    <h3 class="card-title">EduVault</h3>
+                    <p class="card-subtitle">Academic File Management</p>
+                    <p class="card-description">A user-friendly web app that lets students create accounts, upload and download academic files from anywhere. Won 1st Prize at a college-level Hackathon.</p>
+                    <div class="card-tags">
+                        <span class="tag">JavaScript</span>
+                        <span class="tag">Bolt.ai</span>
+                        <span class="tag">Netlify</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 3 -->
+            <div class="project-card" data-category="ml">
+                <div class="card-glow"></div>
+                <div class="card-content">
+                    <div class="card-header">
+                        <div class="card-icon"><i class="fas fa-chart-bar"></i></div>
+                        <div class="card-links">
+                            <a href="https://github.com/Jathin-24/Project_1" target="_blank" rel="noopener"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                    <h3 class="card-title">Insurance Purchase Prediction</h3>
+                    <p class="card-subtitle">ML Classification Model</p>
+                    <p class="card-description">A machine learning model that predicts whether a customer will purchase insurance based on features like age and salary. Built and evaluated in Jupyter Notebook.</p>
+                    <div class="card-tags">
+                        <span class="tag">Python</span>
+                        <span class="tag">pandas</span>
+                        <span class="tag">NumPy</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 4 -->
+            <div class="project-card" data-category="web">
+                <div class="card-glow"></div>
+                <div class="card-content">
+                    <div class="card-header">
+                        <div class="card-icon"><i class="fas fa-lightbulb"></i></div>
+                        <div class="card-links">
+                            <a href="https://github.com/Jathin-24/Team_Thunders_Soc" target="_blank" rel="noopener"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                    <h3 class="card-title">Idea to Start-up Platform</h3>
+                    <p class="card-subtitle">Investor-Innovator Connector</p>
+                    <p class="card-description">A web platform connecting investors with innovative minds. Features project submission, browsing funding opportunities, and a responsive UI for all devices.</p>
+                    <div class="card-tags">
+                        <span class="tag">HTML</span>
+                        <span class="tag">CSS</span>
+                        <span class="tag">JavaScript</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 5 -->
+            <div class="project-card" data-category="ml">
+                <div class="card-glow"></div>
+                <div class="card-content">
+                    <div class="card-header">
+                        <div class="card-icon"><i class="fas fa-microscope"></i></div>
+                        <div class="card-links">
+                            <a href="https://github.com/Jathin-24/Project_2" target="_blank" rel="noopener"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                    <h3 class="card-title">Cancer Net</h3>
+                    <p class="card-subtitle">Breast Cancer CNN Classifier</p>
+                    <p class="card-description">A deep learning CNN classifier (CancerNet) that detects malignant and benign breast cancer histology images using the IDC dataset, assisting pathologists in early diagnosis.</p>
+                    <div class="card-tags">
+                        <span class="tag">Python</span>
+                        <span class="tag">CNN</span>
+                        <span class="tag">Deep Learning</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 6 -->
+            <div class="project-card" data-category="ml">
+                <div class="card-glow"></div>
+                <div class="card-content">
+                    <div class="card-header">
+                        <div class="card-icon"><i class="fas fa-smile"></i></div>
+                        <div class="card-links">
+                            <a href="https://github.com/Jathin-24/IOT_Hackathon_Mood_Enhancer" target="_blank" rel="noopener"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                    <h3 class="card-title">Mood Enhancer</h3>
+                    <p class="card-subtitle">IoT + AI Emotion System</p>
+                    <p class="card-description">An IoT project that detects user mood and modifies the environment to improve it, using Hugging Face pre-trained models and OpenCV for emotion recognition.</p>
+                    <div class="card-tags">
+                        <span class="tag">Python</span>
+                        <span class="tag">HuggingFace</span>
+                        <span class="tag">OpenCV</span>
+                        <span class="tag">Supabase</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 7 -->
+            <div class="project-card" data-category="ml">
+                <div class="card-glow"></div>
+                <div class="card-content">
+                    <div class="card-header">
+                        <div class="card-icon"><i class="fas fa-users-cog"></i></div>
+                        <div class="card-links">
+                            <a href="https://github.com/Jathin-24/Employee_Attrition_Prediction" target="_blank" rel="noopener"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                    <h3 class="card-title">Employee Attrition Prediction</h3>
+                    <p class="card-subtitle">HR Analytics ML Pipeline</p>
+                    <p class="card-description">An end-to-end ML pipeline predicting employee attrition using HR, demographic, and job data — helping organizations identify at-risk employees and take preventive action.</p>
+                    <div class="card-tags">
+                        <span class="tag">Python</span>
+                        <span class="tag">scikit-learn</span>
+                        <span class="tag">ML Pipeline</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 8 -->
+            <div class="project-card" data-category="ml">
+                <div class="card-glow"></div>
+                <div class="card-content">
+                    <div class="card-header">
+                        <div class="card-icon"><i class="fas fa-user-slash"></i></div>
+                        <div class="card-links">
+                            <a href="https://github.com/Jathin-24/customer-churn-prediction-system" target="_blank" rel="noopener"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                    <h3 class="card-title">Customer Churn Prediction</h3>
+                    <p class="card-subtitle">Business Intelligence ML</p>
+                    <p class="card-description">End-to-end ML pipeline predicting customer churn using behavioral and transactional data, helping businesses retain customers likely to discontinue service.</p>
+                    <div class="card-tags">
+                        <span class="tag">Python</span>
+                        <span class="tag">ML</span>
+                        <span class="tag">Data Science</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 9 -->
+            <div class="project-card" data-category="ml">
+                <div class="card-glow"></div>
+                <div class="card-content">
+                    <div class="card-header">
+                        <div class="card-icon"><i class="fas fa-car-crash"></i></div>
+                        <div class="card-links">
+                            <a href="https://colab.research.google.com/drive/11S91VSZqDjzFXPdtK7tSdEwb46ygqNJT?usp=sharing" target="_blank" rel="noopener"><i class="fas fa-external-link-alt"></i></a>
+                        </div>
+                    </div>
+                    <h3 class="card-title">Accident Severity Prediction</h3>
+                    <p class="card-subtitle">Random Forest Classifier</p>
+                    <p class="card-description">A Random Forest ML model that predicts accident severity based on gathered data, used to forecast the likelihood and intensity of accidents for safer outcomes.</p>
+                    <div class="card-tags">
+                        <span class="tag">Python</span>
+                        <span class="tag">Random Forest</span>
+                        <span class="tag">Colab</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== TIMELINE SECTION ===== -->
+    <section class="section timeline-section" id="timeline">
+        <div class="section-header">
+            <span class="section-number">04</span>
+            <h2 class="section-title">Warp <span class="gradient-text">Log</span></h2>
+            <div class="section-line"></div>
+        </div>
+        <p class="section-description">My journey through space-time — education, achievements, and milestones.</p>
+
+        <div class="timeline" id="timeline-container">
+            <div class="timeline-line"></div>
+            
+            <div class="timeline-item left">
+                <div class="timeline-dot"><i class="fas fa-star"></i></div>
+                <div class="timeline-card">
+                    <span class="timeline-date">2025</span>
+                    <h3>🏆 Hackathon Winner</h3>
+                    <p>Won <strong>1st Prize</strong> at a college-level Hackathon for the EduVault project, developed using Bolt.ai as part of Team.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item right">
+                <div class="timeline-dot"><i class="fas fa-rocket"></i></div>
+                <div class="timeline-card">
+                    <span class="timeline-date">2023 — Present</span>
+                    <h3>🎓 B.Tech in Computer Science</h3>
+                    <p><strong>KKR & KSR Institute of Technology and Sciences</strong>, Vinjanampadu, AP. Expected Graduation: July 2027. Courses: DSA, Digital Logic, Discrete Math.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item left">
+                <div class="timeline-dot"><i class="fas fa-graduation-cap"></i></div>
+                <div class="timeline-card">
+                    <span class="timeline-date">2023</span>
+                    <h3>📚 Intermediate (12th Grade)</h3>
+                    <p><strong>Sri Sarada JR College</strong>, Vijayawada. Scored an impressive <strong>91.3%</strong>.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item right">
+                <div class="timeline-dot"><i class="fas fa-award"></i></div>
+                <div class="timeline-card">
+                    <span class="timeline-date">2021</span>
+                    <h3>🏅 10th Grade — Perfect Score</h3>
+                    <p><strong>Tiny Tots EM High School</strong>, Sullurupeta. Achieved a <strong>10.0 CGPA</strong>.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item left">
+                <div class="timeline-dot"><i class="fas fa-medal"></i></div>
+                <div class="timeline-card">
+                    <span class="timeline-date">~2018</span>
+                    <h3>🔬 State-Level Science Expo</h3>
+                    <p>Built the <strong>Home Security System (Electronic Eye)</strong> in 9th grade with guidance from physics lecturer Elisha Sir. Qualified for state-level expo organized by the Government of Andhra Pradesh.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== CONTACT SECTION ===== -->
+    <section class="section contact-section" id="contact">
+        <div class="section-header">
+            <span class="section-number">05</span>
+            <h2 class="section-title">Mission <span class="gradient-text">Control</span></h2>
+            <div class="section-line"></div>
+        </div>
+        <p class="section-description">Ready to connect? Let's make something amazing together.</p>
+
+        <div class="contact-grid">
+            <div class="contact-info-cards">
+                <a href="mailto:jlr.jathinlalith@gmail.com" class="contact-card" id="contact-email">
+                    <div class="contact-card-icon"><i class="fas fa-envelope"></i></div>
+                    <div class="contact-card-info">
+                        <h4>Email</h4>
+                        <p>jlr.jathinlalith@gmail.com</p>
+                    </div>
+                </a>
+                <a href="tel:+917075744311" class="contact-card" id="contact-phone">
+                    <div class="contact-card-icon"><i class="fas fa-phone"></i></div>
+                    <div class="contact-card-info">
+                        <h4>Phone</h4>
+                        <p>+91 7075744311</p>
+                    </div>
+                </a>
+                <a href="https://github.com/Jathin-24" target="_blank" rel="noopener" class="contact-card" id="contact-github">
+                    <div class="contact-card-icon"><i class="fab fa-github"></i></div>
+                    <div class="contact-card-info">
+                        <h4>GitHub</h4>
+                        <p>Jathin-24</p>
+                    </div>
+                </a>
+                <a href="https://www.linkedin.com/in/jathin-lalith-dachepalli-16178b314/" target="_blank" rel="noopener" class="contact-card" id="contact-linkedin">
+                    <div class="contact-card-icon"><i class="fab fa-linkedin-in"></i></div>
+                    <div class="contact-card-info">
+                        <h4>LinkedIn</h4>
+                        <p>Jathin Lalith Dachepalli</p>
+                    </div>
+                </a>
+            </div>
+            <div class="contact-message">
+                <div class="terminal-window">
+                    <div class="terminal-header">
+                        <div class="terminal-dots">
+                            <span class="dot red"></span>
+                            <span class="dot yellow"></span>
+                            <span class="dot green"></span>
+                        </div>
+                        <span class="terminal-title">mission_control.sh</span>
+                    </div>
+                    <div class="terminal-body">
+                        <p><span class="terminal-prompt">$</span> <span class="terminal-cmd">cat status.txt</span></p>
+                        <p class="terminal-output">🟢 Open to internships in Web Development, Frontend Engineering, or Machine Learning</p>
+                        <p><span class="terminal-prompt">$</span> <span class="terminal-cmd">echo $LOCATION</span></p>
+                        <p class="terminal-output">Tenali, Andhra Pradesh, India 📍</p>
+                        <p><span class="terminal-prompt">$</span> <span class="terminal-cmd">echo $INTERESTS</span></p>
+                        <p class="terminal-output">React.js | Three.js | ML | Full-Stack Dev</p>
+                        <p><span class="terminal-prompt">$</span> <span class="terminal-cmd">./connect.sh --with-jathin</span></p>
+                        <p class="terminal-output">✨ Let's build something stellar together!</p>
+                        <p><span class="terminal-prompt">$</span> <span class="cursor-blink">|</span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-logo">
+                <span class="logo-bracket">&lt;</span>
+                <span class="logo-name">Jathin Lalith</span>
+                <span class="logo-bracket">/&gt;</span>
+            </div>
+            <div class="footer-socials">
+                <a href="https://github.com/Jathin-24" target="_blank" rel="noopener" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/jathin-lalith-dachepalli-16178b314/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                <a href="mailto:jlr.jathinlalith@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+            </div>
+            <p class="footer-text">Designed & Crafted with <i class="fas fa-heart" style="color: var(--accent-pink);"></i> in the cosmos</p>
+            <p class="footer-copy">&copy; 2025 Jathin Lalith Dachepalli. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script type="module" src="/src/main.js"></script>
+</body>
+</html>
