@@ -6,8 +6,8 @@ import * as THREE from 'three';
 import gsap from 'gsap';
 
 let scene, camera, renderer, starMaterial, stars, nebulaMaterial, nebula;
+let shuttle, thrusters;
 let isWarping = false;
-let warpFactor = 0;
 let currentZone = 'hero';
 
 const planetRegistry = {};
@@ -27,10 +27,8 @@ export function initSpace() {
 
     // ---- Scene Setup ----
     scene = new THREE.Scene();
-    camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 2000);
-    camera.position.copy(zoneCoordinates.hero.pos);
-    camera.lookAt(zoneCoordinates.hero.lookAt);
-
+    camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 3000);
+    
     renderer = new THREE.WebGLRenderer({
         canvas,
         antialias: true,
@@ -40,7 +38,7 @@ export function initSpace() {
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
     // ---- Starfield ----
-    const starCount = 3000;
+    const starCount = 4000;
     const starGeometry = new THREE.BufferGeometry();
     const starPositions = new Float32Array(starCount * 3);
     const starSizes = new Float32Array(starCount);
@@ -48,18 +46,17 @@ export function initSpace() {
 
     for (let i = 0; i < starCount; i++) {
         const i3 = i * 3;
-        starPositions[i3]     = (Math.random() - 0.5) * 400;
-        starPositions[i3 + 1] = (Math.random() - 0.5) * 400;
-        starPositions[i3 + 2] = (Math.random() - 0.5) * 400;
+        starPositions[i3]     = (Math.random() - 0.5) * 800;
+        starPositions[i3 + 1] = (Math.random() - 0.5) * 800;
+        starPositions[i3 + 2] = (Math.random() - 0.5) * 800;
         starSizes[i] = Math.random() * 2 + 0.5;
 
-        // Color palette matching the theme
         const colorChoice = Math.random();
-        if (colorChoice < 0.6) { // White
+        if (colorChoice < 0.6) {
             starColors[i3] = 1.0; starColors[i3+1] = 1.0; starColors[i3+2] = 1.0;
-        } else if (colorChoice < 0.8) { // Cyan
+        } else if (colorChoice < 0.8) {
             starColors[i3] = 0.0; starColors[i3+1] = 0.83; starColors[i3+2] = 1.0;
-        } else { // Purple
+        } else {
             starColors[i3] = 0.66; starColors[i3+1] = 0.33; starColors[i3+2] = 0.97;
         }
     }
@@ -73,14 +70,12 @@ export function initSpace() {
             attribute float size;
             attribute vec3 color;
             varying vec3 vColor;
-            uniform float uTime;
             uniform float uWarp;
             void main() {
                 vColor = color;
                 vec3 pos = position;
-                // Warp streaking effect
                 if (uWarp > 0.0) {
-                    pos.z += uWarp * 100.0 * (pos.z / 200.0);
+                    pos.z += uWarp * 150.0 * (pos.z / 400.0);
                 }
                 vec4 mvPosition = modelViewMatrix * vec4(pos, 1.0);
                 gl_PointSize = size * (300.0 / -mvPosition.z);
@@ -95,7 +90,7 @@ export function initSpace() {
                 gl_FragColor = vec4(vColor, 1.0 - (dist * 2.0));
             }
         `,
-        uniforms: { uTime: { value: 0 }, uWarp: { value: 0 } },
+        uniforms: { uWarp: { value: 0 } },
         transparent: true,
         blending: THREE.AdditiveBlending,
         depthWrite: false
@@ -104,24 +99,83 @@ export function initSpace() {
     stars = new THREE.Points(starGeometry, starMaterial);
     scene.add(stars);
 
-    // ---- Create Planets for Zones ----
-    createPlanet('hero', 0x00d4ff, new THREE.Vector3(0, 0, -15), 5);
-    createPlanet('about', 0xff5f56, new THREE.Vector3(0, 10, 0), 4); // Render Nebula core
-    createPlanet('skills', 0xa855f7, new THREE.Vector3(45, -5, -30), 6);
-    createPlanet('projects', 0x00d4ff, new THREE.Vector3(-60, 15, 10), 8);
-    createPlanet('feed', 0x00d4ff, new THREE.Vector3(20, -30, 40), 5);
+    // ---- 3D Space Shuttle (Savage-01) ----
+    createShuttle();
+
+    // ---- Create Planets ----
+    createPlanet('hero', 0x00d4ff, new THREE.Vector3(0, 0, -20), 5);
+    createPlanet('about', 0xff5f56, new THREE.Vector3(15, 15, 0), 4);
+    createPlanet('skills', 0xa855f7, new THREE.Vector3(50, -10, -40), 6);
+    createPlanet('projects', 0x00d4ff, new THREE.Vector3(-80, 20, 20), 8);
+    createPlanet('feed', 0x00d4ff, new THREE.Vector3(30, -40, 60), 5);
 
     // ---- Lighting ----
-    const ambientLight = new THREE.AmbientLight(0x404040, 2);
-    scene.add(ambientLight);
-    const mainLight = new THREE.PointLight(0xffffff, 5, 200);
-    mainLight.position.set(20, 20, 20);
-    scene.add(mainLight);
+    scene.add(new THREE.AmbientLight(0xffffff, 0.5));
+    const pointLight = new THREE.PointLight(0x00d4ff, 2, 100);
+    pointLight.position.set(10, 10, 10);
+    scene.add(pointLight);
 
-    // ---- Resize Handlers ----
+    onWindowResize();
     window.addEventListener('resize', onWindowResize);
 
     animate();
+}
+
+function createShuttle() {
+    shuttle = new THREE.Group();
+    
+    // Body (Cockpit style)
+    const bodyGeom = new THREE.CapsuleGeometry(0.2, 0.6, 4, 8);
+    const bodyMat = new THREE.MeshStandardMaterial({ color: 0x111111, metalness: 0.9, roughness: 0.1 });
+    const body = new THREE.Mesh(bodyGeom, bodyMat);
+    body.rotation.x = Math.PI / 2;
+    shuttle.add(body);
+
+    // Wings
+    const wingGeom = new THREE.BoxGeometry(1.2, 0.05, 0.4);
+    const wingMat = new THREE.MeshStandardMaterial({ color: 0x333333 });
+    const wings = new THREE.Mesh(wingGeom, wingMat);
+    wings.position.set(0, -0.1, 0);
+    shuttle.add(wings);
+
+    // Fins
+    const finGeom = new THREE.BoxGeometry(0.05, 0.4, 0.3);
+    const finL = new THREE.Mesh(finGeom, wingMat);
+    finL.position.set(0.5, 0.1, 0.1);
+    shuttle.add(finL);
+    
+    const finR = finL.clone();
+    finR.position.x = -0.5;
+    shuttle.add(finR);
+
+    // Thrusters
+    const thrusterGeom = new THREE.CylinderGeometry(0.05, 0.08, 0.15, 8);
+    const thrusterMat = new THREE.MeshBasicMaterial({ color: 0x00d4ff });
+    thrusters = new THREE.Group();
+    
+    const t1 = new THREE.Mesh(thrusterGeom, thrusterMat);
+    t1.position.set(0.15, 0, 0.4);
+    t1.rotation.x = Math.PI / 2;
+    thrusters.add(t1);
+    
+    const t2 = t1.clone();
+    t2.position.x = -0.15;
+    thrusters.add(t2);
+    
+    shuttle.add(thrusters);
+
+    // Thruster Glow (Inner)
+    const glowGeom = new THREE.SphereGeometry(0.06, 8, 8);
+    const glowMat = new THREE.MeshBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0.8 });
+    const glow1 = new THREE.Mesh(glowGeom, glowMat);
+    glow1.position.set(0.15, 0, 0.45);
+    thrusters.add(glow1);
+    const glow2 = glow1.clone();
+    glow2.position.x = -0.15;
+    thrusters.add(glow2);
+
+    shuttle.position.copy(zoneCoordinates.hero.pos);
+    scene.add(shuttle);
 }
 
 function createPlanet(name, color, position, size) {
@@ -156,32 +210,41 @@ export function flyToZone(zoneName) {
     
     isWarping = true;
     
-    // GSAP Timeline for the Warp jump
     const tl = gsap.timeline({
         onComplete: () => {
             isWarping = false;
-            gsap.to(starMaterial.uniforms.uWarp, { value: 0, duration: 1 });
+            gsap.to(starMaterial.uniforms.uWarp, { value: 0, duration: 1.5 });
         }
     });
 
-    // 1. Zoom into "Warp"
-    tl.to(starMaterial.uniforms.uWarp, { value: 2.0, duration: 0.8, ease: "power2.in" });
+    // 1. Ignite & Tilt
+    tl.to(starMaterial.uniforms.uWarp, { value: 4.0, duration: 1.2, ease: "power2.in" });
     
-    // 2. Camera Fly-through
-    tl.to(camera.position, {
+    // 2. Shuttle & Camera Fly
+    tl.to(shuttle.position, {
         x: target.pos.x,
         y: target.pos.y,
         z: target.pos.z,
-        duration: 2,
+        duration: 3,
         ease: "expo.inOut"
-    }, "-=0.5");
+    }, "-=0.2");
 
-    // 3. Smooth LookAt Transition
+    // Camera stays tethered but lags slightly for cinematic feel
+    tl.to(camera.position, {
+        x: target.pos.x,
+        y: target.pos.y + 0.5,
+        z: target.pos.z + 4,
+        duration: 3.5,
+        ease: "expo.out"
+    }, "<");
+
+    // 3. Aim at planet
     const lookTarget = new THREE.Vector3().copy(target.lookAt);
     tl.to({}, {
-        duration: 2,
+        duration: 3,
         onUpdate: function() {
-            camera.lookAt(lookTarget);
+            shuttle.lookAt(lookTarget);
+            camera.lookAt(shuttle.position);
         }
     }, "<");
 }
@@ -198,13 +261,34 @@ function animate() {
     const delta = clock.getDelta();
     const elapsed = clock.getElapsedTime();
 
-    if (starMaterial) starMaterial.uniforms.uTime.value = elapsed;
+    // Shuttle Idle Behavior
+    if (shuttle && !isWarping) {
+        shuttle.position.y += Math.sin(elapsed * 1.5) * 0.001;
+        shuttle.rotation.x = Math.sin(elapsed * 0.8) * 0.05;
+        shuttle.rotation.z = Math.sin(elapsed * 1.2) * 0.03;
+
+        // Smooth Chase Camera
+        const idealOffset = new THREE.Vector3(0, 0.5, 4);
+        idealOffset.applyQuaternion(shuttle.quaternion);
+        idealOffset.add(shuttle.position);
+        camera.position.lerp(idealOffset, 0.05);
+        camera.lookAt(shuttle.position);
+    }
 
     // Rotate all planets
     Object.values(planetRegistry).forEach(p => {
-        p.rotation.y += 0.1 * delta;
-        p.rotation.z += 0.05 * delta;
+        p.rotation.y += 0.05 * delta;
+        p.rotation.z += 0.02 * delta;
     });
+
+    // Thruster Intensity
+    if (thrusters) {
+        const tScale = isWarping ? 3 + Math.random() : 1 + Math.sin(elapsed * 15) * 0.2;
+        thrusters.scale.set(1, 1, tScale);
+        thrusters.children.forEach(c => {
+            if (c.material) c.material.opacity = isWarping ? 1 : 0.6;
+        });
+    }
 
     renderer.render(scene, camera);
 }
